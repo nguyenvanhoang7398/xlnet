@@ -365,6 +365,9 @@ class StanceProcessor(GLUEProcessor):
                 label = self.get_labels()[0]
             else:
                 label = line[self.label_column]
+                if label not in self.get_labels():
+                    tf.logging.warning('Failed to parse correct label, ignored.')
+                    continue
             examples.append(InputExample(
                 guid=guid, text_a=text_a, text_b=text_b, label=label
             ))
