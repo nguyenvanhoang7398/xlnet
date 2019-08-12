@@ -1,11 +1,12 @@
-CUDA_VISIBLE_DEVICES=0 python run_classifier.py \
+FOLD_NUM=2
+CUDA_VISIBLE_DEVICES=1 python run_classifier.py \
     --do_train=True \
     --do_eval=True \
     --eval_all_ckpt=True \
     --task_name=stance \
-    --data_dir=fnc/fold_1 \
-    --output_dir=proc_data/fnc_fold_1 \
-    --model_dir=exp/fnc_fold_1 \
+    --data_dir=fnc/fold_${FOLD_NUM} \
+    --output_dir=proc_data/fnc_fold_${FOLD_NUM} \
+    --model_dir=exp/fnc_fold_${FOLD_NUM} \
     --uncased=False \
     --spiece_model_file=xlnet_cased_L-12_H-768_A-12/spiece.model \
     --model_config_path=xlnet_cased_L-12_H-768_A-12/xlnet_config.json \
