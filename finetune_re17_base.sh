@@ -1,12 +1,12 @@
-FOLD_NUM=2
-CUDA_VISIBLE_DEVICES=1 python run_classifier.py \
+FOLD_NUM=1
+CUDA_VISIBLE_DEVICES=0,1 /home/v/vanhoang/anaconda3/envs/tf14/bin/python run_classifier.py \
     --do_train=True \
     --do_eval=True \
     --eval_all_ckpt=True \
     --task_name=stance \
-    --data_dir=fnc/fold_${FOLD_NUM} \
-    --output_dir=proc_data/fnc_fold_${FOLD_NUM} \
-    --model_dir=exp/fnc_fold_${FOLD_NUM} \
+    --data_dir=re17/fold_${FOLD_NUM} \
+    --output_dir=proc_data/re17_fold_${FOLD_NUM} \
+    --model_dir=exp/re17_fold_${FOLD_NUM} \
     --uncased=False \
     --spiece_model_file=xlnet_cased_L-12_H-768_A-12/spiece.model \
     --model_config_path=xlnet_cased_L-12_H-768_A-12/xlnet_config.json \
