@@ -346,7 +346,7 @@ class StanceProcessor(GLUEProcessor):
         self.text_b_column = 2
 
     def get_labels(self):
-        return ["support", "deny", "comment"]
+        return ["support", "deny", "comment", "unrelated"]
 
     def _create_examples(self, lines, set_type):
         examples = []
