@@ -348,7 +348,7 @@ class StanceProcessor(GLUEProcessor):
     def get_labels(self):
         return ["support", "deny", "comment", "unrelated"]
 
-    def _create_examples(self, lines, set_type):
+    def create_2sent_examples(self, lines, set_type):
         examples = []
         for (i, line) in enumerate(lines):
             if i == 0 and self.contains_header and set_type != "test":
@@ -372,6 +372,18 @@ class StanceProcessor(GLUEProcessor):
                 guid=guid, text_a=text_a, text_b=text_b, label=label
             ))
         return examples
+
+    def _create_examples(self, lines, set_type):
+        examples = self.create_2sent_examples(lines, set_type)
+        return examples
+
+
+class RelationProcessor(StanceProcessor):
+    def __init__(self):
+        super(RelationProcessor, self).__init__()
+
+    def get_labels(self):
+        return ["related", "unrelated"]
 
 
 class StsbProcessor(GLUEProcessor):
@@ -684,7 +696,8 @@ def main(_):
         'sts-b': StsbProcessor,
         'imdb': ImdbProcessor,
         "yelp5": Yelp5Processor,
-        "stance": StanceProcessor
+        "stance": StanceProcessor,
+        "relation": RelationProcessor
     }
 
     if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:
